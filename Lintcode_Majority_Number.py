@@ -9,13 +9,17 @@ class Solution:
         # write your code here
         if nums==[]:
             return None
-        cand = None; count = 0
-        for item in nums:
-            if count==0:
-                cand = item; count+=1
-            elif item==cand:
-                count += 1
-            else:
-                count -= 1
         
-        return cand
+        rad = [ random.randint(0,len(nums)-1) for i in xrange(10)]
+        res = [ nums[i] for i in rad]
+        pi = {}
+        for i in res:
+            if i in pi:
+                pi[i] +=1
+            else:
+                pi[i] = 1
+        maxi = max(pi.values())
+        for i in pi:
+            if pi[i]==maxi:
+                return i
+        return nums[random.randint(0,len(nums-1))]
